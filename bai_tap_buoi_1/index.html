@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container" class="container">
+        <header>
+            <center>
+                <h1>Task List</h1>
+            </center>
+        </header>
+        <section>
+            <div class="sub-main">
+                <center><button class="button-three">Tạo Task</button></center>
+            </div>
+            <div class="sort-tag" style="padding: 20px;">
+                <center>
+                    <label for="cars">Sắp xếp theo:</label>
+                    <select name="cars" id="cars">
+                        <option value="Thứ tự">Thứ tự</option>
+                        <option value="Tên">Tên</option>
+                    </select>
+                    <br><br>
+                    <button id="sort-btn">Sắp xếp lại</button>
+                </center>
+            </div>
+            <table>
+                <!--   The Head of The Table -->
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th rowspan="">Tên công việc</th>
+                        <th>Thời gian cần làm</th>
+                        <th>Dự tính hoàn thành</th>
+                        <th>Mức độ quan trọng</th>
+                        <th>Xóa</th>
+                    </tr>
+                    <!--  End of The Head -->
+                </thead>
+                <!--   The Body of The Table -->
+                <tbody id="table-row" class="table-row"></tbody>
+                <!-- End of The Table -->
+            </table>
+        </section>
+    </div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="module" src="./index.js"></script>
+<script type="module" src="./loadData.js"></script>
+<script type="module" src="./sortByName.js"></script>
+
+</html>
