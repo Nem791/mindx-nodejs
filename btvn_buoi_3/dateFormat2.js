@@ -6,4 +6,5 @@ function dateFormat2(format) {
     return dateFormat1[2] + '/' + dateFormat1[1] + '/' + dateFormat1[0];
 }
 
-console.log(dateFormat2(dateFormat1(13, 12, 2001)));
+console.log(dateFormat1(01, 01, 2021));
+console.log(dateFormat2(dateFormat1(01, 01, 2021)));
