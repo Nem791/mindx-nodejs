@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  .container
+  header
+    .brand
+      h1 Veggy
+    .cart-display
+      .item-numer
+        form(action='/cart' method='post' id='form-cart')
+          //- input#sent-price(type='hidden' name='price')
+          //- input#sent-quantity(type='hidden' name='quantity')
+          input#sent-array(type='hidden' name='array')
+          input#sent-array-objects(type='hidden' name='array_object')
+          button(id='submit-btn' type='submit' name='btn-submit')
+            i.fa-solid.fa-cart-shopping
+          span  No of items : 
+          span.display-quantity 0
+        
+      .item-numer
+        i.fa-solid.fa-dollar-sign  
+        span.display-cash 0
+  section
+    .card-container
+      each veg in veggyStore
+        .card
+          img(src=`${veg.image}` alt='')
+          .title #{veg.title}
+          .price $ #{veg.price}
+          .increment
+            input(class='quantity' type='number' value='0' min='0' max='10000' step='1')
+          button.add-btn ADD TO CART
+
+block scripts
+  script(src='/javascripts/addFunction.js')
+  script(src='/javascripts/app.js')
