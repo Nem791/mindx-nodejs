@@ -11,7 +11,7 @@ router.get('/', checkToken, function (req, res, next) {
     else {
       console.log(post + 'g');
       console.log(req.user);
-      res.render("index", { post });
+      res.render("index", { post, username: req.user.name });
     }
   })
 });
