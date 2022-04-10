@@ -8,6 +8,7 @@ var session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var productRouter = require('./routes/products');
 const { errorHandle } = require('./middleware/errorMiddleware');
 
 connectDB();
@@ -32,6 +33,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/products', productRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

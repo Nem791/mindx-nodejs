@@ -30,6 +30,8 @@ const productSchema = mongoose.Schema({
     numReviews: {type: Number, required: true, default: 0},
     price: {type: Number, required: true, default: 0},
     countInStock: {type: Number, required: true, default: 0},
+    deleted: {type: Boolean, default: false},
+    softDeletedAt: {type: Date}
     
 }, {
     timestamps: true

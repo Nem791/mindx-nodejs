@@ -1,6 +1,6 @@
 const User = require("./models/userModel");
 const users = require('./data/users');
-const products = require('./data/products');
+const products = require('./data/products.json');
 const reviews = require('./data/reviews.json');
 const connectDB = require('./config/db');
 const { Product, Review } = require("./models/productModel");
@@ -11,12 +11,7 @@ const importData = async () => {
     try {
         await User.deleteMany();
         await User.insertMany(users);
-        const userAdmin = await User.findOne({email: 'admin@example.com'});
-
-        const sampleProducts = products.map((product) => {
-            return {...product, user: userAdmin._id}
-        });
-
+        const adminId = await User.findOne({ isAdmin: true });
         const userList = await User.find();
         reviews.forEach(review => {
             const rndInt = Math.floor(Math.random() * 3);
@@ -26,15 +21,15 @@ const importData = async () => {
         await Review.deleteMany();
         await Review.insertMany(reviews);
 
-        for (let index = 0; index < sampleProducts.length; index++) {
-            const rndInt = Math.floor(Math.random() * 30) + 1;
-            const random = await Review.aggregate([{ $sample: { size: rndInt } }]);
-            sampleProducts[index].reviews = random
+        for (let index = 0; index < products.length; index++) {
+            products[index].user = adminId._id;
+            const random = await Review.aggregate([{ $sample: { size: 5 } }]);
+            products[index].reviews = random
         }
 
         await Product.deleteMany();
-        await Product.insertMany(sampleProducts);
-        console.log('Data imported success');
+        await Product.insertMany(products);
+        console.log('Data imported sucess');
 
     } catch (error) {
         console.log(error);
